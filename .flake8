@@ -1,0 +1,3 @@
+[flake8]
+exclude = venv,_pycache_,.pytest_cache
+ignore = W293,W391,W292,E303,E302,E501,E122,E251,E122,E305
