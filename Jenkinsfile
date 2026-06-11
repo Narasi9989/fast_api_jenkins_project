@@ -5,26 +5,19 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                bat 'python -m venv venv'
-                bat 'venv\\Scripts\\pip install -r requirements.txt'
+                bat 'pip install -r requirements.txt'
             }
         }
 
-        stage('Code Quality Check') {
+        stage('Lint') {
             steps {
-                bat 'venv\\Scripts\\flake8 .'
+                bat 'flake8 .'
             }
         }
 
-        stage('Unit Testing') {
+        stage('Unit Test') {
             steps {
-                bat 'venv\\Scripts\\pytest'
-            }
-        }
-
-        stage('Build') {
-            steps {
-                echo 'FastAPI Project Build Successful'
+                bat 'pytest'
             }
         }
     }
