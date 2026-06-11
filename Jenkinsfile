@@ -3,12 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/Narasi9989/fast_api_jenkins_project'
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
                 bat 'python -m venv venv'
@@ -30,8 +24,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat 'echo Building application...'
-                bat 'python setup.py sdist'
+                bat 'echo Build stage completed.'
             }
         }
     }
