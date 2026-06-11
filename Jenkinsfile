@@ -3,13 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                git branch: 'main',
-                url: 'YOUR_GITHUB_REPO_URL'
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
                 bat 'python -m venv venv'
@@ -31,9 +24,8 @@ pipeline {
 
         stage('Build') {
             steps {
-                echo 'Build completed successfully'
+                echo 'FastAPI Project Build Successful'
             }
         }
     }
 }
-
