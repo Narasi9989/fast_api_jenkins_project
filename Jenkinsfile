@@ -3,16 +3,28 @@ pipeline {
 
     stages {
 
-        stage('Verify Files') {
-            steps {
-                bat 'dir'
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
                 bat '"C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python314\\python.exe" -m venv venv'
                 bat 'venv\\Scripts\\pip install -r requirements.txt'
+            }
+        }
+
+        stage('Code Quality Check') {
+            steps {
+                bat 'venv\\Scripts\\flake8 .'
+            }
+        }
+
+        stage('Unit Testing') {
+            steps {
+                bat 'venv\\Scripts\\pytest'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Build stage completed successfully.'
             }
         }
     }
