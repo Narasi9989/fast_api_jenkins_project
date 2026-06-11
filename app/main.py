@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from app.routes.employees import router
-from app.db.database import get_connection
+from routes.employees import router
+from db.database import get_connection
 
 app = FastAPI()
 

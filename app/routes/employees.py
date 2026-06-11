@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
-from app.models.employee import Employee, SalaryUpdate
-from app.db.database import get_connection
+from models.employee import Employee, SalaryUpdate
+from db.database import get_connection
 
 router = APIRouter()
 
@@ -12,7 +12,7 @@ def get_employees():
     cursor = conn.cursor()
 
     cursor.execute("""
-        SELECT EMP_ID, EMP_NAME
+        SELECT *
         FROM EMPLOYEES
         ORDER BY EMP_ID
     """)
@@ -24,7 +24,10 @@ def get_employees():
     for row in rows:
         result.append({
             "emp_id": row[0],
-            "emp_name": row[1]
+            "emp_name": row[1],
+            "department":row[2],
+            "salary":row[3],
+            "hire_date":row[4]
         })
 
     cursor.close()
